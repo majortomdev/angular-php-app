@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  policies: Policy[];
+  selectedPolicy: Policy = { id: null , number: null, amount: null };
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.apiService.readPolicies().subscribe((policies: Policy[])=>{
+      this.policies = policies;
+      console.log(this.policies);
+    })
+
   }
 
 }
