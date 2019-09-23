@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Policy } from './policy';
 import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -10,6 +11,15 @@ import { Observable } from 'rxjs';
 export class ApiService {
 
   PHP_API_SERVER = 'http://127.0.0.1:8010';
+
+  // const httpOptions: any    = {
+  //   headers: new HttpHeaders({
+  //     //'Content-Type':  'application/json',
+  //     'Access-Control-Allow-Headers': 'Content-Type',
+  //     'Access-Control-Allow-Methods': 'GET',
+  //     'Access-Control-Allow-Origin': '*'
+  //   })
+  // };
 
   readPolicies(): Observable<Policy[]> {
     return this.httpClient.get<Policy[]>(`${this.PHP_API_SERVER}/api/read.php`);
